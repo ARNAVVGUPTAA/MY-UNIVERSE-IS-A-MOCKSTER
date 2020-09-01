@@ -1,12 +1,14 @@
 class Interface {
     constructor(){
         this.image = loadImage("button.png");
+        this.start = createSprite(150,140);
+        this.start.setCollider("rectangle", 0,0, width*0.75, height);
     }
 
     display(){
         
-        start.addImage(this.image);
-        start.scale = 0.5;
+        this.start.addImage(this.image);
+        this.start.scale = 0.5;
 
         push();
         textFont("Helvetica");
@@ -28,6 +30,7 @@ class Interface {
         text("WHISPER: THE UNIVERSE DOESN'T KNOW THAT!!!!",300,130);
         text("SO, PUT ON YOUR SOCKS AND GET READY TO SAVE YOUR OWN 'IMMORTAL'",300,150);
         text("PLANET AGAIN AND AGAIN TILL ETERNITY!!!",300,170);
+        text("AND DESTROYING ANOTHER JUST LIKE YOURS",300,190);
         pop();
 
         push();
@@ -36,6 +39,9 @@ class Interface {
         fill("white");
         text("CLICK ON THE START BUTTON TO TELEPORT ON YOUR PLANET!!", 150, 450);
         pop();
-
+        this.start.visible = true; 
+        if(cursor.isTouching(this.start) && mouseIsPressed){
+            playState++;
+        }
     }
 }
